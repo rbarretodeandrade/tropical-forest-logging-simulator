@@ -569,7 +569,7 @@ st.markdown(
     """
     <div style='text-align: center; color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);'>
         <p style='margin-bottom: 0.2rem;'>Developed by</p>
-        <p style='margin-bottom: 0.2rem;'><strong>Rafael B. de Andrade</strong> (he/him/his)</p>
+        <p style='margin-bottom: 0.2rem;'><strong>Rafael B. de Andrade</strong></p>
         <p style='margin-bottom: 0.2rem;'>Assistant Professor of Environmental Studies</p>
         <p style='margin-bottom: 0.2rem;'>St. Mary's College of Maryland</p>
         <p style='margin-bottom: 0;'><a href='mailto:rbdeandrade@smcm.edu' style='color: #90EE90; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);'>rbdeandrade@smcm.edu</a></p>
