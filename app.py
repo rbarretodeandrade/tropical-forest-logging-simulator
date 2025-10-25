@@ -249,21 +249,25 @@ def calculate_score(df, operations):
     wood_products = total_harvested * 0.4  # 40% long-term storage
     base_score = wood_products * 2
 
-    # 2-tier penalty
+    # New scoring system: Bonus for sustainable, penalty for moderate, GAME OVER for severe
     if final_carbon < 270:  # <90%
-        penalty = -80
-        status = "❌ Severe Degradation (<90%)"
+        penalty = 0
+        bonus = 0
+        final_score = 0  # GAME OVER
+        status = "❌ GAME OVER - Severe Degradation (<90%)"
         status_color = "red"
     elif final_carbon < 291:  # <97%
         penalty = -40
+        bonus = 0
+        final_score = base_score + penalty
         status = "⚠️ Moderate Degradation (<97%)"
         status_color = "orange"
-    else:
+    else:  # ≥97%
         penalty = 0
+        bonus = 10
+        final_score = base_score + bonus
         status = "✅ Sustainable (≥97%)"
         status_color = "green"
-
-    final_score = base_score + penalty
 
     return {
         'final_carbon': final_carbon,
@@ -272,6 +276,7 @@ def calculate_score(df, operations):
         'wood_products': wood_products,
         'base_score': base_score,
         'penalty': penalty,
+        'bonus': bonus,
         'final_score': final_score,
         'status': status,
         'status_color': status_color
@@ -312,7 +317,10 @@ st.markdown("### Interactive Tool for Exploring Reduced-Impact Logging Trade-off
 st.info("""
 **Context:** Old-growth tropical rainforest at equilibrium (300 Mg C/ha).
 **Your Goal:** Design a logging strategy that balances timber extraction with forest conservation. If your Final Carbon is below 97% or 90% of the Baseline, you will lose certification (e.g. FSC) and funding (e.g. REDD+), affecting your score.
-**Score:** (Wood Products × 2) - Penalty based on forest degradation.
+**Scoring:**
+- ≥97%: (Wood Products × 2) + 10 bonus ✅
+- <97%: (Wood Products × 2) - 40 penalty ⚠️
+- <90%: GAME OVER (0 points) ❌
 """)
 
 # Sidebar - Scenario Selection
@@ -385,10 +393,12 @@ with col2:
     )
 
 with col3:
-    penalty_color = "normal" if score_data['penalty'] == 0 else "inverse"
+    # Show bonus or penalty
+    modifier_value = score_data['bonus'] if score_data['bonus'] > 0 else score_data['penalty']
+    modifier_label = "Bonus" if score_data['bonus'] > 0 else "Penalty"
     st.metric(
-        "Penalty",
-        f"{score_data['penalty']} points",
+        modifier_label,
+        f"{modifier_value:+d} points" if modifier_value != 0 else "0 points",
         score_data['status']
     )
 
