@@ -238,13 +238,26 @@ def calculate_score(df, operations):
     final_carbon = df['Your_Logging'].iloc[-1]
 
     # Calculate total wood harvested
+    # Need to recalculate based on carbon BEFORE logging, not after
     total_harvested = 0
-    for year, intensity in operations:
-        if intensity > 0:
-            # Find carbon stock at this year
-            carbon_at_year = df[df['Year'] == year]['Your_Logging'].values[0]
-            harvested = carbon_at_year * (intensity / 100)
-            total_harvested += harvested
+    carbon = 300.0  # Start at equilibrium
+
+    for i in range(1, len(df)):
+        current_year = df['Year'].iloc[i]
+
+        # Check if logging occurs this year
+        for log_year, intensity in operations:
+            if current_year == log_year and intensity > 0:
+                # Harvest based on carbon BEFORE logging
+                harvested = carbon * (intensity / 100)
+                total_harvested += harvested
+                # Update carbon after logging
+                carbon = carbon * (1 - intensity / 100)
+                break
+        else:
+            # No logging, just recovery
+            carbon = recover_carbon(carbon, 5)
+
 
     wood_products = total_harvested * 0.4  # 40% long-term storage
     base_score = wood_products * 2
@@ -348,12 +361,16 @@ for i in range(1, 4):
     st.sidebar.markdown(f"#### Logging Operation {i}")
     col1, col2 = st.sidebar.columns(2)
 
+    # Default values for three 10% operations
+    default_years = {1: 10, 2: 40, 3: 70}
+    default_intensities = {1: 10, 2: 10, 3: 10}
+
     with col1:
         year = st.slider(
             f"Year {i}",
             min_value=0,
             max_value=95,
-            value=0 if i > 1 else 10,
+            value=default_years.get(i, 0),
             step=5,
             key=f"year_{i}"
         )
@@ -363,7 +380,7 @@ for i in range(1, 4):
             f"Intensity % {i}",
             min_value=0,
             max_value=40,
-            value=0 if i > 1 else 25,
+            value=default_intensities.get(i, 0),
             step=5,
             key=f"intensity_{i}"
         )
