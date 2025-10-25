@@ -113,13 +113,26 @@ st.markdown(f"""
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7) !important;
     }}
 
-    /* Expander content text - make it white too */
-    .streamlit-expanderContent,
-    .streamlit-expanderContent p,
-    .streamlit-expanderContent li,
-    .streamlit-expanderContent div {{
+    /* Expander content text ONLY - make white without affecting main content */
+    [data-testid="stExpander"] p,
+    [data-testid="stExpander"] li,
+    [data-testid="stExpander"] span,
+    [data-testid="stExpander"] strong,
+    [data-testid="stExpander"] h3,
+    [data-testid="stExpander"] h4,
+    [data-testid="stExpander"] code,
+    details[open] p,
+    details[open] li,
+    details[open] span {{
         color: #FFFFFF !important;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6) !important;
+    }}
+
+    /* Keep main content text dark for readability on white background */
+    .main [data-testid="stMarkdownContainer"]:not([data-testid="stExpander"] [data-testid="stMarkdownContainer"]) p,
+    .main .stAlert p {{
+        color: #333333 !important;
+        text-shadow: none !important;
     }}
 
     /* Plotly chart with rounded corners */
@@ -298,7 +311,7 @@ st.markdown("### Interactive Tool for Exploring Reduced-Impact Logging Trade-off
 
 st.info("""
 **Context:** Old-growth tropical rainforest at equilibrium (300 Mg C/ha).
-**Your Goal:** Design a logging strategy that balances timber extraction with forest conservation. If your Final Carbon is below 97% or 90% of the Baseline, you will lose certification and funding, affecting your score.
+**Your Goal:** Design a logging strategy that balances timber extraction with forest conservation. If your Final Carbon is below 97% or 90% of the Baseline, you will lose certification (e.g. FSC) and funding (e.g. REDD+), affecting your score.
 **Score:** (Wood Products × 2) - Penalty based on forest degradation.
 """)
 
@@ -555,7 +568,8 @@ st.markdown("---")
 st.markdown(
     """
     <div style='text-align: center; color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);'>
-        <p style='margin-bottom: 0.2rem;'><strong>Rafael B. de Andrade</strong></p>
+        <p style='margin-bottom: 0.2rem;'>Developed by</p>
+        <p style='margin-bottom: 0.2rem;'><strong>Rafael B. de Andrade</strong> (he/him/his)</p>
         <p style='margin-bottom: 0.2rem;'>Assistant Professor of Environmental Studies</p>
         <p style='margin-bottom: 0.2rem;'>St. Mary's College of Maryland</p>
         <p style='margin-bottom: 0;'><a href='mailto:rbdeandrade@smcm.edu' style='color: #90EE90; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);'>rbdeandrade@smcm.edu</a></p>
