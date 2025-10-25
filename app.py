@@ -113,6 +113,15 @@ st.markdown(f"""
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7) !important;
     }}
 
+    /* Expander content text - make it white too */
+    .streamlit-expanderContent,
+    .streamlit-expanderContent p,
+    .streamlit-expanderContent li,
+    .streamlit-expanderContent div {{
+        color: #FFFFFF !important;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6) !important;
+    }}
+
     /* Plotly chart with rounded corners */
     [data-testid="stPlotlyChart"] {{
         border-radius: 10px;
@@ -289,7 +298,7 @@ st.markdown("### Interactive Tool for Exploring Reduced-Impact Logging Trade-off
 
 st.info("""
 **Context:** Old-growth tropical rainforest at equilibrium (300 Mg C/ha).
-**Your Goal:** Design a logging strategy that balances timber extraction with forest conservation.
+**Your Goal:** Design a logging strategy that balances timber extraction with forest conservation. If your Final Carbon is below 97% or 90% of the Baseline, you will lose certification and funding, affecting your score.
 **Score:** (Wood Products × 2) - Penalty based on forest degradation.
 """)
 
