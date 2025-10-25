@@ -294,7 +294,7 @@ SCENARIOS = {
     "Congo Basin (Central Africa)": {
         "description": "Remote location with minimal infrastructure. Important wildlife corridor.",
         "context": "High extraction costs, low accessibility, conservation priorities",
-        "intensities": [12, 22, 32],
+        "intensities": [10, 20, 35],
         "icon": "🦍"
     },
     "Central America (Costa Rica/Panama)": {
