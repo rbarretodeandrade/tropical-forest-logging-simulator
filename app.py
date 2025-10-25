@@ -498,7 +498,7 @@ fig.update_layout(
     font=dict(size=12, color='#333333')
 )
 
-st.plotly_chart(fig, width='stretch')
+st.plotly_chart(fig, use_container_width=True)
 
 # Strategy comparison
 with st.expander("📈 Compare with Optimal Strategies"):
