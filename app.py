@@ -372,8 +372,8 @@ st.title("🌴 Tropical Forest Logging Simulator")
 st.markdown("### Interactive Tool for Exploring Reduced-Impact Logging Trade-offs")
 
 st.info("""
-**Context:** Old-growth tropical rainforest at equilibrium (300 Mg C/ha).
-**Your Goal:** Design a logging strategy that balances timber extraction with forest conservation. If your Final Carbon is below 97% or 90% of the Baseline, you will lose certification (e.g. FSC) and funding (e.g. REDD+), affecting your score.
+Welcome to the Tropical Forest Logging Simulator! Your goal is to design a logging strategy that balances timber extraction with forest conservation. Using the sliders in the sidebar, plan one, two, or three logging operations to be done in the next 100 years. The more timber you extract, the more points you get, but there's a catch - if your final carbon stocks after 100 years is below 97% or 90% of the 300 Mg C/ha baseline of a stable old-growth forest, you will lose certification (e.g. FSC) and funding (e.g. REDD+), affecting your score. Can you make a profit and still preserve the tropical forest carbon stocks?
+
 **Scoring:**
 - ≥97%: (Wood Products × 2) + 10 bonus ✅
 - <97%: (Wood Products × 2) - 40 penalty ⚠️
