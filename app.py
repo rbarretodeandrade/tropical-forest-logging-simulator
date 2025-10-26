@@ -544,34 +544,6 @@ fig.update_layout(
 
 st.plotly_chart(fig, use_container_width=True)
 
-# Strategy comparison
-with st.expander("📈 Compare with Optimal Strategies"):
-    st.markdown("### How does your strategy compare?")
-
-    comparison_strategies = [
-        ("Two 25% (Years 10, 55)", [(10, 25), (55, 25)]),
-        ("Two 20% (Years 10, 55)", [(10, 20), (55, 20)]),
-        ("One 25% (Year 10)", [(10, 25)]),
-        ("One 35% (Year 10)", [(10, 35)]),
-        ("Three 15% (Years 10, 45, 80)", [(10, 15), (45, 15), (80, 15)])
-    ]
-
-    comparison_data = []
-    for name, ops in comparison_strategies:
-        sim_df = simulate_logging(ops)
-        score = calculate_score(sim_df, ops)
-        comparison_data.append({
-            'Strategy': name,
-            'Final Carbon (Mg)': f"{score['final_carbon']:.1f}",
-            '% Baseline': f"{score['pct_baseline']:.1f}%",
-            'Wood Products': f"{score['wood_products']:.1f}",
-            'Penalty': score['penalty'],
-            'Score': f"{score['final_score']:.1f}"
-        })
-
-    comparison_df = pd.DataFrame(comparison_data)
-    st.dataframe(comparison_df, width='stretch')
-
 # Educational content
 with st.expander("📚 Learn About the Science"):
     st.markdown("""
