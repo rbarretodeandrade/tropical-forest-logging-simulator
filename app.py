@@ -53,7 +53,7 @@ st.markdown(f"""
 
     /* Make sidebar content more visible on wood texture */
     [data-testid="stSidebar"] > div:first-child {{
-        background-color: rgba(139, 90, 43, 0.85);
+        background-color: rgba(139, 90, 43, 0.3);
         padding: 1rem;
     }}
 
@@ -63,6 +63,50 @@ st.markdown(f"""
     [data-testid="stSidebar"] h3,
     [data-testid="stSidebar"] .stMarkdown {{
         color: #FFF8DC !important;
+    }}
+
+    /* Make sidebar sliders white/light colored */
+    [data-testid="stSidebar"] .stSlider > div > div > div {{
+        background-color: rgba(255, 255, 255, 0.3) !important;
+    }}
+
+    [data-testid="stSidebar"] .stSlider > div > div > div > div {{
+        background-color: #FFFFFF !important;
+    }}
+
+    /* Slider thumb (the draggable circle) */
+    [data-testid="stSidebar"] input[type="range"]::-webkit-slider-thumb {{
+        background-color: #FFFFFF !important;
+    }}
+
+    [data-testid="stSidebar"] input[type="range"]::-moz-range-thumb {{
+        background-color: #FFFFFF !important;
+    }}
+
+    /* Slider labels (Year 1, Intensity % 1, etc.) - make white */
+    [data-testid="stSidebar"] .stSlider label,
+    [data-testid="stSidebar"] .stSlider p {{
+        color: #FFFFFF !important;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7) !important;
+    }}
+
+    /* Slider value numbers - make white */
+    [data-testid="stSidebar"] .stSlider [data-baseweb="slider"] {{
+        color: #FFFFFF !important;
+    }}
+
+    [data-testid="stSidebar"] .stSlider div[role="slider"] {{
+        color: #FFFFFF !important;
+    }}
+
+    /* Slider tick labels and current value - make white */
+    [data-testid="stSidebar"] .stSlider [data-baseweb="tick-bar"] span,
+    [data-testid="stSidebar"] .stSlider [data-baseweb="thumb-value"],
+    [data-testid="stSidebar"] .stSlider div div div span,
+    [data-testid="stSidebar"] .stSlider span,
+    [data-testid="stSidebar"] .stSlider * {{
+        color: #FFFFFF !important;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7) !important;
     }}
 
     /* Main content area - white semi-transparent background */
