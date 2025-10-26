@@ -1,0 +1,193 @@
+═══════════════════════════════════════════════════════════════════════════════
+  TROPICAL FOREST LOGGING SIMULATOR - PRINTABLE SCENARIO CARDS
+
+  Instructions: Print this document, cut along the lines, and distribute cards
+  Each page has 2 cards (top and bottom half) - print front side only
+═══════════════════════════════════════════════════════════════════════════════
+
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                    🌳 AMAZON BASIN (BRAZIL)                               ║
+╠═══════════════════════════════════════════════════════════════════════════╣
+║                                                                           ║
+║  YOUR MISSION:                                                            ║
+║  Manage an FSC-certified selective logging operation in the Brazilian    ║
+║  Amazon. High-value mahogany and hardwoods attract premium prices, but   ║
+║  international buyers demand proof of sustainable management.            ║
+║                                                                           ║
+║  CONTEXT:                                                                 ║
+║  • Premium timber markets, international certification requirements      ║
+║  • High environmental scrutiny from NGOs and government                  ║
+║  • Advanced infrastructure with trained workforce                        ║
+║                                                                           ║
+║  AVAILABLE LOGGING INTENSITIES:  0% | 15% | 25% | 35%                    ║
+║                                                                           ║
+║  SCORING RULES:                                                           ║
+║  ✅ ≥97% carbon: (Wood Products × 2) + 10 bonus                          ║
+║  ⚠️  <97% carbon: (Wood Products × 2) - 40 penalty                       ║
+║  ❌ <90% carbon: GAME OVER - 0 points                                    ║
+║                                                                           ║
+║  KEY INSIGHT:                                                             ║
+║  The 35% option yields high revenue but risks losing FSC certification.  ║
+║  Can you maximize profit while staying above the 97% threshold?          ║
+║                                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+- - - - - - - - - - - - - - - CUT HERE - - - - - - - - - - - - - - - - - - -
+
+╔═══════════════════════════════════════════════════════════════════════════╗
+║              🌴 SE ASIAN DIPTEROCARP (BORNEO)                             ║
+╠═══════════════════════════════════════════════════════════════════════════╣
+║                                                                           ║
+║  YOUR MISSION:                                                            ║
+║  Manage a dipterocarp forest concession in Borneo with steep terrain     ║
+║  and critical orangutan habitat. REDD+ carbon credits are available,     ║
+║  but logging damage is amplified by difficult conditions.                ║
+║                                                                           ║
+║  CONTEXT:                                                                 ║
+║  • Steep terrain increases erosion risk and logging damage              ║
+║  • Critical biodiversity concerns (orangutans, endemic species)          ║
+║  • REDD+ carbon credit opportunities for conservation                    ║
+║                                                                           ║
+║  AVAILABLE LOGGING INTENSITIES:  0% | 15% | 20% | 30%                    ║
+║                                                                           ║
+║  SCORING RULES:                                                           ║
+║  ✅ ≥97% carbon: (Wood Products × 2) + 10 bonus                          ║
+║  ⚠️  <97% carbon: (Wood Products × 2) - 40 penalty                       ║
+║  ❌ <90% carbon: GAME OVER - 0 points                                    ║
+║                                                                           ║
+║  KEY INSIGHT:                                                             ║
+║  Notice max intensity is only 30% (vs 35% in Amazon). Terrain            ║
+║  constraints mean damage is worse per % logged. REDD+ bonus requires     ║
+║  staying above 97% threshold.                                            ║
+║                                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════════
+                                   PAGE 1 OF 3
+═══════════════════════════════════════════════════════════════════════════════
+
+
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                 🦍 CONGO BASIN (CENTRAL AFRICA)                           ║
+╠═══════════════════════════════════════════════════════════════════════════╣
+║                                                                           ║
+║  YOUR MISSION:                                                            ║
+║  Manage a remote Congo Basin concession with minimal infrastructure,     ║
+║  serving as an important wildlife corridor for gorillas and forest       ║
+║  elephants. High costs demand good returns, but scrutiny is intense.     ║
+║                                                                           ║
+║  CONTEXT:                                                                 ║
+║  • Remote location with high extraction and transport costs              ║
+║  • Minimal infrastructure, limited equipment options                     ║
+║  • Important wildlife corridor - conservation priority area              ║
+║                                                                           ║
+║  AVAILABLE LOGGING INTENSITIES:  0% | 10% | 20% | 35%                    ║
+║                                                                           ║
+║  SCORING RULES:                                                           ║
+║  ✅ ≥97% carbon: (Wood Products × 2) + 10 bonus                          ║
+║  ⚠️  <97% carbon: (Wood Products × 2) - 40 penalty                       ║
+║  ❌ <90% carbon: GAME OVER - 0 points                                    ║
+║                                                                           ║
+║  KEY INSIGHT:                                                             ║
+║  Notice the unusual gap: 10%, 20%, then jump to 35%. This reflects       ║
+║  reality - either light touch or heavy extraction to justify high costs  ║
+║  of remote operations. Wildlife corridor = severe degradation penalties. ║
+║                                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+- - - - - - - - - - - - - - - CUT HERE - - - - - - - - - - - - - - - - - - -
+
+╔═══════════════════════════════════════════════════════════════════════════╗
+║          🐒 CENTRAL AMERICA (COSTA RICA/PANAMA)                           ║
+╠═══════════════════════════════════════════════════════════════════════════╣
+║                                                                           ║
+║  YOUR MISSION:                                                            ║
+║  Manage a forest in a Central American biological corridor with high     ║
+║  ecotourism value. Multiple revenue streams available: timber, tourism,  ║
+║  and payments for ecosystem services (PES). Find the sweet spot!         ║
+║                                                                           ║
+║  CONTEXT:                                                                 ║
+║  • High ecotourism revenue potential (if forest quality maintained)      ║
+║  • Payment for ecosystem services (PES) programs available               ║
+║  • Biological corridor connectivity requirements                         ║
+║                                                                           ║
+║  AVAILABLE LOGGING INTENSITIES:  0% | 10% | 20% | 30%                    ║
+║                                                                           ║
+║  SCORING RULES:                                                           ║
+║  ✅ ≥97% carbon: (Wood Products × 2) + 10 bonus                          ║
+║  ⚠️  <97% carbon: (Wood Products × 2) - 40 penalty                       ║
+║  ❌ <90% carbon: GAME OVER - 0 points                                    ║
+║                                                                           ║
+║  KEY INSIGHT:                                                             ║
+║  PES and ecotourism create strong incentives for conservation. The       ║
+║  bonus for staying ≥97% represents these alternative revenues. Heavy     ║
+║  logging damages ecotourism potential and loses PES eligibility.         ║
+║                                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════════
+                                   PAGE 2 OF 3
+═══════════════════════════════════════════════════════════════════════════════
+
+
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                        🎮 FREE PLAY MODE                                  ║
+╠═══════════════════════════════════════════════════════════════════════════╣
+║                                                                           ║
+║  YOUR MISSION:                                                            ║
+║  Unrestricted exploration! Manage a generic old-growth tropical          ║
+║  rainforest with no preset constraints. Design the optimal strategy      ║
+║  from scratch. Test extreme approaches and discover what works.          ║
+║                                                                           ║
+║  CONTEXT:                                                                 ║
+║  • No regional restrictions or limitations                               ║
+║  • Full control over logging intensity and timing                        ║
+║  • Generic tropical rainforest at equilibrium (300 Mg C/ha)              ║
+║                                                                           ║
+║  AVAILABLE LOGGING INTENSITIES:  ANY from 0% to 40% (5% increments)      ║
+║                                                                           ║
+║  SCORING RULES:                                                           ║
+║  ✅ ≥97% carbon: (Wood Products × 2) + 10 bonus                          ║
+║  ⚠️  <97% carbon: (Wood Products × 2) - 40 penalty                       ║
+║  ❌ <90% carbon: GAME OVER - 0 points                                    ║
+║                                                                           ║
+║  KEY INSIGHTS:                                                            ║
+║  • Try single heavy cuts vs. multiple light cuts                         ║
+║  • Test boundaries: what's the maximum sustainable extraction?           ║
+║  • Experiment with timing: early vs. late logging                        ║
+║  • Can you beat the constrained scenarios with creative solutions?       ║
+║                                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+- - - - - - - - - - - - - - - CUT HERE - - - - - - - - - - - - - - - - - - -
+
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                    KEY CONCEPTS - ALL SCENARIOS                           ║
+╠═══════════════════════════════════════════════════════════════════════════╣
+║                                                                           ║
+║  OLD-GROWTH EQUILIBRIUM:                                                  ║
+║  • Baseline: 300 Mg C/ha (carbon neutral - NOT absorbing carbon!)        ║
+║  • Tree growth = Tree mortality (dynamic equilibrium)                    ║
+║                                                                           ║
+║  VERY SLOW RECOVERY:                                                      ║
+║  Recovery formula: C(t+5) = C(t) + 0.12 × (300 - C(t))                   ║
+║                                                                           ║
+║  After 25% logging (300→225 Mg), recovery timeline:                      ║
+║    Year 25: 245 Mg (27% recovered)                                       ║
+║    Year 50: 267 Mg (56% recovered)                                       ║
+║    Year 75: 283 Mg (77% recovered)                                       ║
+║    Year 100: 294 Mg (92% recovered) ← Still not back to 100%!           ║
+║                                                                           ║
+║  WHY SO SLOW?                                                             ║
+║  • Soil compaction from machinery                                        ║
+║  • Changed microclimate (light, temperature, humidity)                   ║
+║  • Slow-growing hardwood species need time                               ║
+║  • Pioneer species must be replaced by climax species                    ║
+║                                                                           ║
+║  DISCUSSION: Is "sustained yield" the same as "sustainable"?             ║
+║                                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════════
+                                   PAGE 3 OF 3
+═══════════════════════════════════════════════════════════════════════════════
