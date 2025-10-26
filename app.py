@@ -431,18 +431,24 @@ for i in range(1, 4):
         )
 
     with col2:
-        # If scenario has locked intensities, use selectbox; otherwise use slider
+        # If scenario has locked intensities, use slider with limited options
         if scenario['intensities'] is not None:
-            # Locked scenario - use selectbox with only allowed values
+            # Locked scenario - slider that snaps to allowed values
             allowed_values = [0] + scenario['intensities']
-            intensity = st.selectbox(
+            # Map slider position (0,1,2,3) to actual values
+            slider_index = st.slider(
                 f"Intensity % {i}",
-                options=allowed_values,
-                index=0,  # Default to 0
-                key=f"intensity_{i}"
+                min_value=0,
+                max_value=len(allowed_values) - 1,
+                value=0,  # Default to 0
+                format="",  # Hide the default number display
+                key=f"intensity_slider_{i}"
             )
+            intensity = allowed_values[slider_index]
+            # Display the actual percentage value
+            st.markdown(f"**{intensity}%**")
         else:
-            # Free play mode - use slider
+            # Free play mode - regular slider
             intensity = st.slider(
                 f"Intensity % {i}",
                 min_value=0,
