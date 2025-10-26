@@ -1,0 +1,248 @@
+═══════════════════════════════════════════════════════════════════════════════
+  TROPICAL FOREST LOGGING SIMULATOR - SCENARIO REFERENCE CARDS
+═══════════════════════════════════════════════════════════════════════════════
+
+Print and distribute these cards to students for each scenario!
+
+═══════════════════════════════════════════════════════════════════════════════
+SCENARIO 1: AMAZON BASIN (BRAZIL) 🌳
+═══════════════════════════════════════════════════════════════════════════════
+
+REGION OVERVIEW:
+Your concession is in the Brazilian Amazon, managing an FSC-certified
+selective logging operation in old-growth rainforest rich in mahogany and
+other high-value hardwoods.
+
+CONTEXT:
+  • Premium timber markets with international demand
+  • FSC certification requirements must be maintained
+  • High environmental scrutiny from NGOs and government
+  • Advanced infrastructure with improved forest management training
+
+CONSTRAINTS:
+  • Available logging intensities: 0%, 15%, 25%, or 35%
+  • Must maintain ≥97% carbon stocks for FSC certification
+  • Must stay ≥90% to avoid severe degradation penalties
+  • 100-year planning horizon
+
+YOUR CHALLENGE:
+Design a logging strategy that maximizes timber revenue while maintaining
+certification standards. International buyers pay premium prices, but they
+require proof of sustainable management.
+
+SCORING:
+  • ≥97% final carbon: (Wood Products × 2) + 10 bonus ✅
+  • <97% final carbon: (Wood Products × 2) - 40 penalty ⚠️
+  • <90% final carbon: GAME OVER - 0 points ❌
+
+TIPS:
+  • The 35% option yields high revenue but risks losing certification
+  • Consider timing - when should you log to allow maximum recovery?
+  • Multiple entries may seem attractive, but cumulative damage adds up
+
+═══════════════════════════════════════════════════════════════════════════════
+SCENARIO 2: SE ASIAN DIPTEROCARP (BORNEO) 🌴
+═══════════════════════════════════════════════════════════════════════════════
+
+REGION OVERVIEW:
+You're managing a dipterocarp forest concession in Borneo, characterized by
+steep terrain and serving as critical orangutan habitat. REDD+ carbon credits
+are available for forest conservation.
+
+CONTEXT:
+  • Difficult terrain increases logging damage and costs
+  • Critical biodiversity concerns (orangutans, other endemic species)
+  • REDD+ carbon credit opportunities available
+  • High erosion risk on steep slopes
+
+CONSTRAINTS:
+  • Available logging intensities: 0%, 15%, 20%, or 30%
+  • Must maintain ≥97% carbon stocks for REDD+ funding
+  • Must stay ≥90% to maintain ecosystem function
+  • Terrain limitations reduce maximum sustainable intensity
+
+YOUR CHALLENGE:
+Balance timber extraction with conservation goals. REDD+ payments can
+supplement timber revenue if you maintain high carbon stocks, but logging
+damage is amplified by the steep terrain.
+
+SCORING:
+  • ≥97% final carbon: (Wood Products × 2) + 10 bonus ✅
+  • <97% final carbon: (Wood Products × 2) - 40 penalty ⚠️
+  • <90% final carbon: GAME OVER - 0 points ❌
+
+TIPS:
+  • Notice the maximum intensity is only 30% (vs 35% in Amazon)
+  • Terrain constraints mean damage is worse per % logged
+  • REDD+ bonus requires staying above 97% threshold
+  • Consider orangutan habitat protection requirements
+
+═══════════════════════════════════════════════════════════════════════════════
+SCENARIO 3: CONGO BASIN (CENTRAL AFRICA) 🦍
+═══════════════════════════════════════════════════════════════════════════════
+
+REGION OVERVIEW:
+Your concession is in the remote Congo Basin, with minimal infrastructure and
+serving as an important wildlife corridor for gorillas and forest elephants.
+
+CONTEXT:
+  • Remote location with high extraction and transport costs
+  • Minimal existing infrastructure
+  • Important wildlife corridor - conservation priority
+  • Low accessibility limits logging equipment options
+
+CONSTRAINTS:
+  • Available logging intensities: 0%, 10%, 20%, or 35%
+  • Must maintain ≥97% for conservation funding
+  • Must stay ≥90% to preserve wildlife corridor function
+  • Limited infrastructure affects operation efficiency
+
+YOUR CHALLENGE:
+High costs mean you need good timber revenue, but conservation priorities
+and wildlife corridor status bring scrutiny. The unusual intensity options
+(10%, 20%, 35%) reflect the trade-offs of remote operations.
+
+SCORING:
+  • ≥97% final carbon: (Wood Products × 2) + 10 bonus ✅
+  • <97% final carbon: (Wood Products × 2) - 40 penalty ⚠️
+  • <90% final carbon: GAME OVER - 0 points ❌
+
+TIPS:
+  • Notice the gap: 10%, 20%, then jump to 35%
+  • This reflects reality: either light touch or heavy extraction to justify costs
+  • Wildlife corridor status means severe penalties for degradation
+  • Remote location means long-term planning is critical
+
+═══════════════════════════════════════════════════════════════════════════════
+SCENARIO 4: CENTRAL AMERICA (COSTA RICA/PANAMA) 🐒
+═══════════════════════════════════════════════════════════════════════════════
+
+REGION OVERVIEW:
+Managing a forest concession in a Central American biological corridor with
+high ecotourism value and payment for ecosystem services (PES) programs.
+
+CONTEXT:
+  • High ecotourism revenue potential
+  • Payment for ecosystem services (PES) available
+  • Biological corridor with connectivity priorities
+  • Strong environmental protection regulations
+
+CONSTRAINTS:
+  • Available logging intensities: 0%, 10%, 20%, or 30%
+  • Must maintain ≥97% for PES payments
+  • Must stay ≥90% to preserve corridor function
+  • Tourism revenue depends on forest quality
+
+YOUR CHALLENGE:
+You have multiple revenue streams: timber, ecotourism, and PES payments.
+Heavy logging damages ecotourism potential and loses PES eligibility. Can
+you find the sweet spot that maximizes total value?
+
+SCORING:
+  • ≥97% final carbon: (Wood Products × 2) + 10 bonus ✅
+  • <97% final carbon: (Wood Products × 2) - 40 penalty ⚠️
+  • <90% final carbon: GAME OVER - 0 points ❌
+
+TIPS:
+  • PES and ecotourism create incentives for conservation
+  • The bonus for staying ≥97% represents these alternative revenues
+  • Lower maximum intensity (30%) reflects conservation priorities
+  • Biological corridor function requires connectivity
+
+═══════════════════════════════════════════════════════════════════════════════
+SCENARIO 5: FREE PLAY MODE 🎮
+═══════════════════════════════════════════════════════════════════════════════
+
+REGION OVERVIEW:
+Unrestricted exploration mode! You're managing a generic old-growth tropical
+rainforest at equilibrium (300 Mg C/ha) with no preset intensity constraints.
+
+CONTEXT:
+  • No regional restrictions or limitations
+  • Full control over logging intensity (0-40% in 5% increments)
+  • Test any strategy you want
+  • Discover optimal approaches through experimentation
+
+CONSTRAINTS:
+  • Available logging intensities: ANY value from 0% to 40% (5% steps)
+  • Must maintain ≥97% carbon stocks for bonus
+  • Must stay ≥90% to avoid GAME OVER
+  • 100-year simulation period
+
+YOUR CHALLENGE:
+No limits! Design the optimal strategy from scratch. Can you find the
+perfect balance between timber extraction and forest conservation? Test
+extreme strategies, compare multiple approaches, and discover what works.
+
+SCORING:
+  • ≥97% final carbon: (Wood Products × 2) + 10 bonus ✅
+  • <97% final carbon: (Wood Products × 2) - 40 penalty ⚠️
+  • <90% final carbon: GAME OVER - 0 points ❌
+
+TIPS:
+  • Try single heavy cuts vs. multiple light cuts
+  • Test the boundaries: what's the maximum sustainable extraction?
+  • Experiment with timing: early vs. late logging
+  • Can you beat the constrained scenarios by finding creative solutions?
+
+GENERAL GUIDANCE:
+  • Recovery is SLOW: C(t+5) = C(t) + 0.12 × (300 - C(t))
+  • After 25% logging, full recovery takes ~100 years
+  • Old-growth forests are at equilibrium - NOT carbon sinks
+  • Multiple entries cause cumulative degradation
+
+═══════════════════════════════════════════════════════════════════════════════
+                           KEY CONCEPTS FOR ALL SCENARIOS
+═══════════════════════════════════════════════════════════════════════════════
+
+OLD-GROWTH EQUILIBRIUM:
+  • Baseline: 300 Mg C/ha (carbon neutral)
+  • Tree growth = Tree mortality
+  • These forests do NOT absorb carbon - they're already saturated
+
+VERY SLOW RECOVERY:
+  • Tropical forests recover exponentially toward equilibrium
+  • Rate: k = 0.12 per 5-year period
+  • Example: After 25% cut (300→225 Mg):
+    - Year 25: 245 Mg (27% recovered)
+    - Year 50: 267 Mg (56% recovered)
+    - Year 75: 283 Mg (77% recovered)
+    - Year 100: 294 Mg (92% recovered)
+
+WHY SO SLOW?
+  • Soil compaction from machinery
+  • Microclimate changes (light, temperature, humidity)
+  • Slow-growing hardwood species
+  • Pioneer species must be replaced by climax species
+
+WOOD PRODUCTS:
+  • Only 40% of harvested carbon enters long-term storage
+  • Rest is lost to milling, processing, short-term products
+  • Score multiplier (×2) represents economic value
+
+THRESHOLD LOGIC:
+  • 97% threshold: FSC certification, REDD+ eligibility, PES payments
+  • 90% threshold: Ecosystem function, biodiversity maintenance
+  • Below 90%: Severe degradation - project failure
+
+═══════════════════════════════════════════════════════════════════════════════
+                              DISCUSSION QUESTIONS
+═══════════════════════════════════════════════════════════════════════════════
+
+1. How do the different scenarios change your strategy?
+
+2. Why might Congo Basin have that unusual intensity gap (10%, 20%, 35%)?
+
+3. What role do REDD+ and FSC certification play in real-world decisions?
+
+4. Is "sustained yield" the same as "sustainable management"?
+
+5. Who benefits from logging? Who bears the long-term costs?
+
+6. How would climate change (affecting k) alter optimal strategies?
+
+7. What if the simulation ran for 200 years instead of 100?
+
+8. Should the penalties be higher? Lower? Different thresholds?
+
+═══════════════════════════════════════════════════════════════════════════════
