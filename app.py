@@ -364,6 +364,12 @@ SCENARIOS = {
         "context": "Tourism revenue, ecosystem services payments, environmental protection",
         "intensities": [10, 20, 30],
         "icon": "🐒"
+    },
+    "Free Play Mode": {
+        "description": "No restrictions! Experiment with any logging intensity and timing.",
+        "context": "Full control over your strategy - test any combination you want",
+        "intensities": None,  # No restrictions
+        "icon": "🎮"
     }
 }
 
@@ -396,8 +402,13 @@ st.sidebar.divider()
 
 # Sidebar - Logging Operations
 st.sidebar.header("🪓 Design Your Logging Plan")
-st.sidebar.markdown("**Recommended intensities for this scenario:**")
-st.sidebar.markdown(f"Low: {scenario['intensities'][0]}% | Medium: {scenario['intensities'][1]}% | High: {scenario['intensities'][2]}%")
+
+# Show intensity guidance based on scenario
+if scenario['intensities'] is not None:
+    st.sidebar.markdown("**Available intensities for this scenario:**")
+    st.sidebar.markdown(f"Low: {scenario['intensities'][0]}% | Medium: {scenario['intensities'][1]}% | High: {scenario['intensities'][2]}%")
+else:
+    st.sidebar.markdown("**Free Play Mode:** Use any intensity from 0% to 40%")
 
 operations = []
 
@@ -420,14 +431,26 @@ for i in range(1, 4):
         )
 
     with col2:
-        intensity = st.slider(
-            f"Intensity % {i}",
-            min_value=0,
-            max_value=40,
-            value=default_intensities.get(i, 0),
-            step=5,
-            key=f"intensity_{i}"
-        )
+        # If scenario has locked intensities, use selectbox; otherwise use slider
+        if scenario['intensities'] is not None:
+            # Locked scenario - use selectbox with only allowed values
+            allowed_values = [0] + scenario['intensities']
+            intensity = st.selectbox(
+                f"Intensity % {i}",
+                options=allowed_values,
+                index=0,  # Default to 0
+                key=f"intensity_{i}"
+            )
+        else:
+            # Free play mode - use slider
+            intensity = st.slider(
+                f"Intensity % {i}",
+                min_value=0,
+                max_value=40,
+                value=default_intensities.get(i, 0),
+                step=5,
+                key=f"intensity_{i}"
+            )
 
     if year > 0 and intensity > 0:
         operations.append((year, intensity))
