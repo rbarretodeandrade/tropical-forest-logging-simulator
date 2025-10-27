@@ -390,7 +390,8 @@ Welcome to the Tropical Forest Logging Simulator! Your goal is to design a loggi
 st.sidebar.header("📍 Select Your Scenario")
 scenario_name = st.sidebar.selectbox(
     "Choose a region:",
-    list(SCENARIOS.keys())
+    list(SCENARIOS.keys()),
+    index=list(SCENARIOS.keys()).index("Free Play Mode")
 )
 
 scenario = SCENARIOS[scenario_name]
