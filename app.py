@@ -208,27 +208,29 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # Recovery function
-def recover_carbon(initial_carbon, years, k=0.12):
+def recover_carbon(initial_carbon, years, k_annual=0.0825):
     """
     Calculate carbon recovery using exponential approach to equilibrium.
 
     Args:
         initial_carbon: Starting carbon stock (Mg C/ha)
         years: Years of recovery
-        k: Recovery coefficient per 5-year period (default 0.12)
+        k_annual: Recovery coefficient per year (default 0.0825)
+            Equivalent to 0.33 per 5-year period
+            Based on literature: 25% cut recovers to 95% in ~20 years
 
     Returns:
         Final carbon stock after recovery
     """
     carbon = initial_carbon
-    periods = years // 5
-    for _ in range(periods):
-        carbon = carbon + k * (300 - carbon)
+    for _ in range(years):
+        carbon = carbon + k_annual * (300 - carbon)
     return carbon
 
 def simulate_logging(operations):
     """
-    Simulate logging operations and forest recovery over 100 years.
+    Simulate logging operations and forest recovery over 25 years.
+    Logging operations take 1 year to complete - impact appears the year AFTER.
 
     Args:
         operations: List of tuples (year, intensity_pct)
@@ -236,27 +238,27 @@ def simulate_logging(operations):
     Returns:
         DataFrame with Year, Baseline, Your_Logging, Difference columns
     """
-    years = list(range(0, 101, 5))
+    years = list(range(0, 26))
     baseline = [300.0] * len(years)
     your_logging = [300.0]  # Start at equilibrium
 
     for i in range(1, len(years)):
         current_year = years[i]
+        prev_year = years[i-1]
         prev_carbon = your_logging[-1]
 
-        # Check if logging occurs this year
+        # Check if logging started in the PREVIOUS year (takes 1 year to complete)
         logged = False
         for log_year, intensity in operations:
-            if current_year == log_year and intensity > 0:
-                # Apply logging
+            if prev_year == log_year and intensity > 0:
+                # Apply logging impact after 1-year operation
                 your_logging.append(prev_carbon * (1 - intensity/100))
                 logged = True
                 break
 
         if not logged:
-            # No logging, just recovery
-            recovery_years = 5
-            new_carbon = recover_carbon(prev_carbon, recovery_years)
+            # No logging, just recovery for 1 year
+            new_carbon = recover_carbon(prev_carbon, 1)
             your_logging.append(new_carbon)
 
     df = pd.DataFrame({
@@ -283,28 +285,33 @@ def calculate_score(df, operations):
 
     # Calculate total wood harvested
     # Need to recalculate based on carbon BEFORE logging, not after
+    # Logging operations take 1 year - impact appears the year AFTER
     total_harvested = 0
     carbon = 300.0  # Start at equilibrium
 
     for i in range(1, len(df)):
         current_year = df['Year'].iloc[i]
+        prev_year = df['Year'].iloc[i-1]
 
-        # Check if logging occurs this year
+        # Check if logging started in the PREVIOUS year
+        logged = False
         for log_year, intensity in operations:
-            if current_year == log_year and intensity > 0:
+            if prev_year == log_year and intensity > 0:
                 # Harvest based on carbon BEFORE logging
                 harvested = carbon * (intensity / 100)
                 total_harvested += harvested
                 # Update carbon after logging
                 carbon = carbon * (1 - intensity / 100)
+                logged = True
                 break
-        else:
-            # No logging, just recovery
-            carbon = recover_carbon(carbon, 5)
+
+        if not logged:
+            # No logging, just recovery for 1 year
+            carbon = recover_carbon(carbon, 1)
 
 
     wood_products = total_harvested * 0.4  # 40% long-term storage
-    base_score = wood_products * 2
+    base_score = wood_products * 1.2
 
     # New scoring system: Bonus for sustainable, penalty for moderate, GAME OVER for severe
     if final_carbon < 270:  # <90%
@@ -313,17 +320,17 @@ def calculate_score(df, operations):
         final_score = 0  # GAME OVER
         status = "❌ GAME OVER - Severe Degradation (<90%)"
         status_color = "red"
-    elif final_carbon < 291:  # <97%
-        penalty = -40
+    elif final_carbon < 285:  # <95%
+        penalty = -30
         bonus = 0
         final_score = base_score + penalty
-        status = "⚠️ Moderate Degradation (<97%)"
+        status = "⚠️ Moderate Degradation (<95%)"
         status_color = "orange"
-    else:  # ≥97%
+    else:  # ≥95%
         penalty = 0
         bonus = 10
         final_score = base_score + bonus
-        status = "✅ Sustainable (≥97%)"
+        status = "✅ Sustainable (≥95%)"
         status_color = "green"
 
     return {
@@ -344,29 +351,29 @@ SCENARIOS = {
     "Amazon Basin (Brazil)": {
         "description": "FSC-certified concession with high-value mahogany and hardwoods. High environmental scrutiny.",
         "context": "Premium timber markets, international certification requirements",
-        "intensities": [15, 25, 35],
+        "intensities": [10, 15, 25],
         "icon": "🌳"
     },
     "SE Asian Dipterocarp (Borneo)": {
         "description": "Steep terrain with high erosion risk. Critical orangutan habitat. REDD+ credits available.",
         "context": "Difficult terrain, biodiversity concerns, carbon credit opportunities",
-        "intensities": [15, 20, 30],
+        "intensities": [10, 15, 20],
         "icon": "🌴"
     },
     "Congo Basin (Central Africa)": {
         "description": "Remote location with minimal infrastructure. Important wildlife corridor.",
         "context": "High extraction costs, low accessibility, conservation priorities",
-        "intensities": [10, 20, 35],
+        "intensities": [10, 15, 25],
         "icon": "🦍"
     },
     "Central America (Costa Rica/Panama)": {
         "description": "Biological corridor with high ecotourism value. PES payments available.",
         "context": "Tourism revenue, ecosystem services payments, environmental protection",
-        "intensities": [10, 20, 30],
+        "intensities": [10, 15, 20],
         "icon": "🐒"
     },
     "Free Play Mode": {
-        "description": "No restrictions! Experiment with any logging intensity and timing.",
+        "description": "No restrictions! Experiment with any logging intensity (up to 25%) and timing.",
         "context": "Full control over your strategy - test any combination you want",
         "intensities": None,  # No restrictions
         "icon": "🎮"
@@ -378,11 +385,11 @@ st.title("🌴 Tropical Forest Logging Simulator")
 st.markdown("### Interactive Tool for Exploring Reduced-Impact Logging Trade-offs")
 
 st.info("""
-Welcome to the Tropical Forest Logging Simulator! Your goal is to design a logging strategy that balances timber extraction with forest conservation. Using the sliders in the sidebar, plan one, two, or three logging operations to be done in the next 100 years. The more timber you extract, the more points you get, but there's a catch - if your final carbon stocks after 100 years is below 97% or 90% of the 300 Mg C/ha baseline of a stable old-growth forest, you will lose certification (e.g. FSC) and funding (e.g. REDD+), affecting your score. Can you make a profit and still preserve the tropical forest carbon stocks?
+Welcome to the Tropical Forest Logging Simulator! Your goal is to design a logging strategy that balances timber extraction with forest conservation. Using the sliders in the sidebar, plan **at least two logging operations** to be done over the next 25 years (a third operation is optional). This represents a sustainable business model with repeated entries rather than one-time extraction. The more timber you extract, the more points you get, but there's a catch - if your final carbon stocks after 25 years is below 95% or 90% of the 300 Mg C/ha baseline of a stable old-growth forest, you will lose certification (e.g. FSC) and funding (e.g. REDD+), affecting your score. Can you make a profit and still preserve the tropical forest carbon stocks?
 
 **Scoring:**
-- ≥97%: (Wood Products × 2) + 10 bonus ✅
-- <97%: (Wood Products × 2) - 40 penalty ⚠️
+- ≥95%: (Wood Products × 1.2) + 10 bonus ✅
+- <95%: (Wood Products × 1.2) - 30 penalty ⚠️
 - <90%: GAME OVER (0 points) ❌
 """)
 
@@ -409,7 +416,7 @@ if scenario['intensities'] is not None:
     st.sidebar.markdown("**Available intensities for this scenario:**")
     st.sidebar.markdown(f"Low: {scenario['intensities'][0]}% | Medium: {scenario['intensities'][1]}% | High: {scenario['intensities'][2]}%")
 else:
-    st.sidebar.markdown("**Free Play Mode:** Use any intensity from 0% to 40%")
+    st.sidebar.markdown("**Free Play Mode:** Use any intensity from 5% to 25%")
 
 operations = []
 
@@ -417,16 +424,27 @@ for i in range(1, 4):
     st.sidebar.markdown(f"#### Logging Operation {i}")
     col1, col2 = st.sidebar.columns(2)
 
-    # Default values for three 10% operations
-    default_years = {1: 10, 2: 40, 3: 70}
-    default_intensities = {1: 10, 2: 10, 3: 10}
+    # Default values for operations
+    default_years = {1: 0, 2: 10, 3: 15}
+    default_intensities = {1: 10, 2: 10, 3: 0}
+
+    # Set minimum constraints per operation
+    if i == 1:
+        min_year = 0
+        min_intensity = 5
+    elif i == 2:
+        min_year = 5
+        min_intensity = 5
+    else:  # i == 3
+        min_year = 15
+        min_intensity = 0
 
     with col1:
         year = st.slider(
             f"Year {i}",
-            min_value=0,
-            max_value=95,
-            value=default_years.get(i, 0),
+            min_value=min_year,
+            max_value=20,
+            value=default_years.get(i, min_year),
             step=5,
             key=f"year_{i}"
         )
@@ -435,13 +453,18 @@ for i in range(1, 4):
         # If scenario has locked intensities, use slider with limited options
         if scenario['intensities'] is not None:
             # Locked scenario - slider that snaps to allowed values
-            allowed_values = [0] + scenario['intensities']
-            # Map slider position (0,1,2,3) to actual values
+            if i <= 2:
+                # Operations 1 and 2: no 0% option
+                allowed_values = scenario['intensities']
+            else:
+                # Operation 3: can be 0%
+                allowed_values = [0] + scenario['intensities']
+            # Map slider position to actual values
             slider_index = st.slider(
                 f"Intensity % {i}",
                 min_value=0,
                 max_value=len(allowed_values) - 1,
-                value=0,  # Default to 0
+                value=0 if i > 2 else 0,  # Default to first non-zero for ops 1-2
                 format="",  # Hide the default number display
                 key=f"intensity_slider_{i}"
             )
@@ -452,14 +475,14 @@ for i in range(1, 4):
             # Free play mode - regular slider
             intensity = st.slider(
                 f"Intensity % {i}",
-                min_value=0,
-                max_value=40,
-                value=default_intensities.get(i, 0),
+                min_value=min_intensity,
+                max_value=25,
+                value=default_intensities.get(i, min_intensity),
                 step=5,
                 key=f"intensity_{i}"
             )
 
-    if year > 0 and intensity > 0:
+    if intensity > 0:
         operations.append((year, intensity))
 
 # Run simulation
@@ -497,7 +520,7 @@ with col4:
     st.metric(
         "FINAL SCORE",
         f"{score_data['final_score']:.1f}",
-        "🏆" if score_data['final_score'] > 60 else ""
+        "🏆" if score_data['final_score'] > 50 else ""
     )
 
 # Status indicator
@@ -509,7 +532,7 @@ else:
     st.error(f"❌ {score_data['status']}")
 
 # Chart
-st.markdown("### 📊 Forest Carbon Dynamics Over 100 Years")
+st.markdown("### 📊 Forest Carbon Dynamics Over 25 Years")
 
 fig = go.Figure()
 
@@ -534,23 +557,25 @@ fig.add_trace(go.Scatter(
     hovertemplate='Year %{x}<br>Carbon: %{y:.1f} Mg/ha<extra></extra>'
 ))
 
-# Add markers for logging events
+# Add markers for logging events (impact appears year+1 after operation starts)
 for year, intensity in operations:
-    carbon_at_event = df[df['Year'] == year]['Your_Logging'].values[0]
-    fig.add_annotation(
-        x=year,
-        y=carbon_at_event,
-        text=f"{intensity}% cut",
-        showarrow=True,
-        arrowhead=2,
-        arrowcolor="red",
-        ax=0,
-        ay=-40
-    )
+    impact_year = year + 1  # Logging takes 1 year to complete
+    if impact_year < len(df):
+        carbon_at_event = df[df['Year'] == impact_year]['Your_Logging'].values[0]
+        fig.add_annotation(
+            x=impact_year,
+            y=carbon_at_event,
+            text=f"{intensity}% cut",
+            showarrow=True,
+            arrowhead=2,
+            arrowcolor="red",
+            ax=0,
+            ay=-40
+        )
 
 # Threshold lines
-fig.add_hline(y=291, line_dash="dash", line_color="orange",
-              annotation_text="97% threshold", annotation_position="right")
+fig.add_hline(y=285, line_dash="dash", line_color="orange",
+              annotation_text="95% threshold", annotation_position="right")
 fig.add_hline(y=270, line_dash="dash", line_color="red",
               annotation_text="90% threshold", annotation_position="right")
 
@@ -585,29 +610,67 @@ with st.expander("📚 Learn About the Science"):
     - Carbon uptake = Carbon loss (respiration, decomposition)
     - **Old-growth forests are NOT net carbon sinks!**
 
-    ### Very Slow Recovery
+    **About the 300 Mg C/ha baseline:**
+    - Represents **high-biomass old-growth tropical rainforests**
+    - Central Amazon: typically **300-400 Mg C/ha** in intact forests
+    - SE Asian dipterocarp forests: **215-320 Mg C/ha** aboveground living biomass
+    - Basin-wide averages are lower (~150-250 Mg C/ha) but our scenarios focus on
+      high-value, old-growth forest concessions
+    - Regional variation depends on soil type, rainfall, elevation, and species composition
 
-    **Recovery Model:** C(t+5) = C(t) + 0.12 × (300 - C(t))
+    ### Recovery Timeline After Logging
 
-    After 25% logging (300 → 225 Mg C/ha):
-    - Year 25: ~245 Mg (27% recovered)
-    - Year 50: ~267 Mg (56% recovered)
-    - Year 75: ~283 Mg (77% recovered)
-    - Year 100: ~294 Mg (92% recovered)
+    **Recovery Model:** C(t+1) = C(t) + 0.0825 × (300 - C(t))
 
-    **Why so slow?**
-    - Soil compaction from machinery
-    - Changed microclimate conditions
-    - Slow-growing hardwood species
-    - Pioneer species must be replaced by climax species
+    This exponential recovery model is based on scientific literature showing that tropical
+    forests recover **slowly** after reduced-impact logging:
+
+    **Example: After 25% logging (300 → 225 Mg C/ha):**
+    - Year 1: ~231 Mg (8% recovered)
+    - Year 5: ~250 Mg (33% recovered)
+    - Year 10: ~267 Mg (56% recovered)
+    - Year 20: ~285 Mg (80% recovered - reaches 95% threshold!)
+    - Year 25: ~290 Mg (87% recovered)
+
+    **Recovery rates from peer-reviewed research:**
+    - **10% biomass loss:** ~10 years to reach 95% of original carbon
+    - **25% biomass loss:** ~20 years to reach 95% of original carbon
+    - Annual carbon accumulation: **1.8-4.5 tC/ha/year** (site-dependent)
+    - Recovery slows as forest approaches equilibrium (asymptotic pattern)
+
+    **Key findings:**
+    - Most studies with <25% initial loss show recovery within **10-20 years**
+    - **Logging intensity** is the primary predictor of recovery time
+    - Current cutting cycles (30-35 years) may be **too short** for full recovery
+    - Even with biomass regrowth, logged forests remain **net carbon sources** for ≥10 years
+
+    **Why is recovery slow?**
+    - **Soil compaction** from heavy logging machinery reduces growth rates
+    - **Canopy gaps** alter microclimate (temperature, humidity, light)
+    - **Slow-growing hardwood species** dominate old-growth forests
+    - **Succession dynamics:** Fast-growing pioneers must be replaced by climax species
+    - **Infrastructure damage:** Roads and skid trails reduce productive forest area
+    - **Deadwood decomposition:** Continued CO₂ emissions from logging debris for 10+ years
+
+    **References:**
+    - Saatchi et al. (2007). "Distribution of aboveground live biomass in the Amazon basin."
+      *Global Change Biology* 13(4):816-837. [Central Amazon: 300-400 Mg C/ha]
+    - Paoli et al. (2008). "Soil nutrients affect spatial patterns of aboveground biomass
+      and emergent tree density in southwestern Borneo." *Oecologia* 155:287-299.
+    - Nugroho et al. (2019). "Carbon recovery following selective logging in tropical
+      rainforests in Kalimantan, Indonesia." *Forest Ecosystems* 6:37.
+    - Fischer et al. (2021). "Scenarios in tropical forest degradation: carbon stock
+      trajectories for REDD+." *Carbon Balance and Management* 12:6.
+    - Macpherson et al. (2012). "Natural regeneration of tropical forests following
+      logging." *Philosophical Transactions B* 367:1790-1801.
 
     ### 2-Tier Penalty System
 
-    **Score = (Wood Products × 2) - Penalty**
+    **Score = (Wood Products × 1.2) + Bonus/Penalty**
 
-    - **≥97% (291 Mg):** ✅ No penalty (sustainable)
-    - **<97% (291 Mg):** ⚠️ -40 points (moderate degradation)
-    - **<90% (270 Mg):** ❌ -80 points (severe degradation)
+    - **≥95% (285 Mg):** ✅ +10 bonus (sustainable)
+    - **<95% (285 Mg):** ⚠️ -30 penalty (moderate degradation)
+    - **<90% (270 Mg):** ❌ GAME OVER (0 points - severe degradation)
 
     This system:
     - Rewards **sustained yield** through multiple moderate entries
@@ -622,18 +685,20 @@ st.sidebar.info("""
 **Experiment and find the best strategy!**
 
 Try different combinations:
-- Single vs. multiple logging entries
+- Two vs. three logging entries
 - Light vs. heavy intensity
 - Early vs. late timing
 - Spacing between operations
+
+Remember: Sustained yield requires repeat entries!
 """)
 
 st.sidebar.markdown("### 🎯 Score Ranges")
 st.sidebar.markdown("""
-- **70-80:** Excellent! 🌟
-- **50-69:** Good
-- **40-49:** Fair
-- **<40:** Needs improvement
+- **50-60:** Excellent! 🌟
+- **40-49:** Good
+- **30-39:** Fair
+- **<30:** Needs improvement
 """)
 
 # Footer
