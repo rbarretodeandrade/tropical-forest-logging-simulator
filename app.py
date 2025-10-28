@@ -122,12 +122,25 @@ st.markdown(f"""
         background-color: white;
         border-radius: 10px;
         padding: 10px;
+        color: #333333 !important;
     }}
 
     [data-testid="stMetric"] {{
         background-color: white;
         border-radius: 10px;
         padding: 15px;
+    }}
+
+    /* Ensure metric labels and values are dark colored */
+    [data-testid="stMetric"] label,
+    [data-testid="stMetric"] [data-testid="stMetricValue"],
+    [data-testid="stMetric"] div {{
+        color: #333333 !important;
+    }}
+
+    /* Metric delta text should also be dark */
+    [data-testid="stMetric"] [data-testid="stMetricDelta"] {{
+        color: #333333 !important;
     }}
 
     /* Info/warning/error boxes with rounded corners */
