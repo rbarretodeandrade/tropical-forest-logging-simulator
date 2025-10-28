@@ -441,7 +441,7 @@ for i in range(1, 4):
 
     with col1:
         year = st.slider(
-            f"Year {i}",
+            "Year",
             min_value=min_year,
             max_value=20,
             value=default_years.get(i, min_year),
@@ -461,7 +461,7 @@ for i in range(1, 4):
                 allowed_values = [0] + scenario['intensities']
             # Map slider position to actual values
             slider_index = st.slider(
-                f"Intensity % {i}",
+                "Intensity %",
                 min_value=0,
                 max_value=len(allowed_values) - 1,
                 value=0 if i > 2 else 0,  # Default to first non-zero for ops 1-2
@@ -474,7 +474,7 @@ for i in range(1, 4):
         else:
             # Free play mode - regular slider
             intensity = st.slider(
-                f"Intensity % {i}",
+                "Intensity %",
                 min_value=min_intensity,
                 max_value=25,
                 value=default_intensities.get(i, min_intensity),
