@@ -346,40 +346,6 @@ def calculate_score(df, operations):
         'status_color': status_color
     }
 
-# Scenario descriptions
-SCENARIOS = {
-    "Amazon Basin (Brazil)": {
-        "description": "FSC-certified concession with high-value mahogany and hardwoods. High environmental scrutiny.",
-        "context": "Premium timber markets, international certification requirements",
-        "intensities": [10, 15, 25],
-        "icon": "🌳"
-    },
-    "SE Asian Dipterocarp (Borneo)": {
-        "description": "Steep terrain with high erosion risk. Critical orangutan habitat. REDD+ credits available.",
-        "context": "Difficult terrain, biodiversity concerns, carbon credit opportunities",
-        "intensities": [10, 15, 20],
-        "icon": "🌴"
-    },
-    "Congo Basin (Central Africa)": {
-        "description": "Remote location with minimal infrastructure. Important wildlife corridor.",
-        "context": "High extraction costs, low accessibility, conservation priorities",
-        "intensities": [10, 15, 25],
-        "icon": "🦍"
-    },
-    "Central America (Costa Rica/Panama)": {
-        "description": "Biological corridor with high ecotourism value. PES payments available.",
-        "context": "Tourism revenue, ecosystem services payments, environmental protection",
-        "intensities": [10, 15, 20],
-        "icon": "🐒"
-    },
-    "Free Play Mode": {
-        "description": "No restrictions! Experiment with any logging intensity (up to 25%) and timing.",
-        "context": "Full control over your strategy - test any combination you want",
-        "intensities": None,  # No restrictions
-        "icon": "🎮"
-    }
-}
-
 # App title and introduction
 st.title("🌴 Tropical Forest Logging Simulator")
 st.markdown("### Interactive Tool for Exploring Reduced-Impact Logging Trade-offs")
@@ -393,30 +359,9 @@ Welcome to the Tropical Forest Logging Simulator! Your goal is to design a loggi
 - <90%: GAME OVER (0 points) ❌
 """)
 
-# Sidebar - Scenario Selection
-st.sidebar.header("📍 Select Your Scenario")
-scenario_name = st.sidebar.selectbox(
-    "Choose a region:",
-    list(SCENARIOS.keys()),
-    index=list(SCENARIOS.keys()).index("Free Play Mode")
-)
-
-scenario = SCENARIOS[scenario_name]
-st.sidebar.markdown(f"### {scenario['icon']} {scenario_name}")
-st.sidebar.markdown(f"**Context:** {scenario['description']}")
-st.sidebar.markdown(f"*{scenario['context']}*")
-
-st.sidebar.divider()
-
 # Sidebar - Logging Operations
 st.sidebar.header("🪓 Design Your Logging Plan")
-
-# Show intensity guidance based on scenario
-if scenario['intensities'] is not None:
-    st.sidebar.markdown("**Available intensities for this scenario:**")
-    st.sidebar.markdown(f"Low: {scenario['intensities'][0]}% | Medium: {scenario['intensities'][1]}% | High: {scenario['intensities'][2]}%")
-else:
-    st.sidebar.markdown("**Free Play Mode:** Use any intensity from 5% to 25%")
+st.sidebar.markdown("**Use any intensity from 5% to 25%**")
 
 operations = []
 
@@ -450,37 +395,14 @@ for i in range(1, 4):
         )
 
     with col2:
-        # If scenario has locked intensities, use slider with limited options
-        if scenario['intensities'] is not None:
-            # Locked scenario - slider that snaps to allowed values
-            if i <= 2:
-                # Operations 1 and 2: no 0% option
-                allowed_values = scenario['intensities']
-            else:
-                # Operation 3: can be 0%
-                allowed_values = [0] + scenario['intensities']
-            # Map slider position to actual values
-            slider_index = st.slider(
-                "Intensity %",
-                min_value=0,
-                max_value=len(allowed_values) - 1,
-                value=0 if i > 2 else 0,  # Default to first non-zero for ops 1-2
-                format="",  # Hide the default number display
-                key=f"intensity_slider_{i}"
-            )
-            intensity = allowed_values[slider_index]
-            # Display the actual percentage value
-            st.markdown(f"**{intensity}%**")
-        else:
-            # Free play mode - regular slider
-            intensity = st.slider(
-                "Intensity %",
-                min_value=min_intensity,
-                max_value=25,
-                value=default_intensities.get(i, min_intensity),
-                step=5,
-                key=f"intensity_{i}"
-            )
+        intensity = st.slider(
+            "Intensity %",
+            min_value=min_intensity,
+            max_value=25,
+            value=default_intensities.get(i, min_intensity),
+            step=5,
+            key=f"intensity_{i}"
+        )
 
     if intensity > 0:
         operations.append((year, intensity))
